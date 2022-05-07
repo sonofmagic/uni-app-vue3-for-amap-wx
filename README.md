@@ -1,5 +1,5 @@
-# uni-app-vite-vue3-tailwind-vscode-template
+# uni-app-vue3-for-amap-wx
 
-基于 uni-app 的 vite/vue3 tailwindcss 模板
+For 
 
-> `postcss.config.js` 假如不起作用，请使用 `内联postcss`
+https://github.com/sonofmagic/uni-app-vite-vue3-tailwind-vscode-template/issues/2
