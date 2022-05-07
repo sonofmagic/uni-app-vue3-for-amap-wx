@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import uni from "@dcloudio/vite-plugin-uni";
+import commonjs from "@rollup/plugin-commonjs";
 const isH5 = process.env.UNI_PLATFORM === "h5";
 import {
   ViteWeappTailwindcssPlugin as vwt,
@@ -19,7 +20,7 @@ if (!isH5) {
 }
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [uni(), isH5 ? undefined : vwt()],
+  plugins: [commonjs(), uni(), isH5 ? undefined : vwt()],
   // 假如 postcss.config.js 不起作用，请使用内联 postcss
   css: {
     postcss: {
