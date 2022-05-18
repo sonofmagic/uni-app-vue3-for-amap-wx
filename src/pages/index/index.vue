@@ -3,53 +3,59 @@
     <view class="section">
       <input @input="bindInput" placeholder="搜索" focus="true" />
     </view>
-    <view :key="tip.id" v-for="tip in tips" @click="bindSearch(tip)" class="text_box">
+    <view
+      :key="tip.id"
+      v-for="tip in tips"
+      @click="bindSearch(tip)"
+      class="text_box"
+    >
       {{ tip.name }}
     </view>
   </view>
 </template>
 
-<script>
-
-import { ref, defineComponent } from 'vue'
-import amapFile from '../../lib/amap-wx.130.js'
+<script lang="ts">
+import { ref, defineComponent } from "vue";
+// @ts-ignore
+import amapFile from "../../lib/amap-wx.130.js";
 
 export default defineComponent({
   setup() {
-    const tips = ref([])
+    const tips = ref([]);
 
-    const myAmapFun = new amapFile.AMapWX({ key: import.meta.env.VITE_AMAP_KEY });
-    const bindSearch = (item) => {
-      
-      const url = '../poi/poi?keywords=' + item.name;
-      console.log(url)
+    const myAmapFun = new amapFile.AMapWX({
+      key: import.meta.env.VITE_AMAP_KEY,
+    });
+    const bindSearch = (item: { name: string }) => {
+      const url = "../poi/poi?keywords=" + item.name;
+      console.log(url);
       uni.redirectTo({
-        url: url
-      })
-    }
-    const bindInput = (e) => {
+        url: url,
+      });
+    };
+    const bindInput = (e: any) => {
       const keywords = e.detail.value;
       myAmapFun.getInputtips({
         keywords: keywords,
-        location: '',
-        success: (data) => {
+        location: "",
+        success: (data: { tips: never[] }) => {
           if (data && data.tips) {
-            tips.value = data.tips
+            tips.value = data.tips;
             // that.setData({
             //   tips: data.tips
             // });
           }
-        }
-      })
-    }
+        },
+      });
+    };
 
     return {
       tips,
       bindSearch,
-      bindInput
-    }
-  }
-})
+      bindInput,
+    };
+  },
+});
 </script>
 
 <style lang="scss">
@@ -70,6 +76,6 @@ export default defineComponent({
 .text_box {
   margin: 10px 25px;
   border-bottom: 1px solid #c3c3c3;
-  padding-bottom: 10px
+  padding-bottom: 10px;
 }
 </style>
