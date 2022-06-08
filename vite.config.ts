@@ -2,10 +2,8 @@ import { defineConfig } from "vite";
 import uni from "@dcloudio/vite-plugin-uni";
 import commonjs from "@rollup/plugin-commonjs";
 const isH5 = process.env.UNI_PLATFORM === "h5";
-import {
-  ViteWeappTailwindcssPlugin as vwt,
-  postcssWeappTailwindcssRename,
-} from "weapp-tailwindcss-webpack-plugin";
+import vwt from 'weapp-tailwindcss-webpack-plugin/vite';
+import postcssWeappTailwindcssRename from 'weapp-tailwindcss-webpack-plugin/postcss';
 
 const postcssPlugins = [require("autoprefixer")(), require("tailwindcss")()];
 if (!isH5) {
